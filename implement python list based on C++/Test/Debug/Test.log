@@ -1,0 +1,13 @@
+﻿  Test.cpp
+C:\Users\admin\Desktop\学习\C++\C-primer-plus\implement python list based on C++\Python_lst\implement_link_list.cpp(185,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\admin\Desktop\学习\C++\C-primer-plus\implement python list based on C++\Python_lst\implement_link_list.cpp(461,31): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+C:\Users\admin\Desktop\学习\C++\C-primer-plus\implement python list based on C++\Python_lst\implement_link_list.cpp(477,15): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\admin\Desktop\学习\C++\C-primer-plus\implement python list based on C++\Python_lst\implement_link_list.cpp(483,27): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+C:\Users\admin\Desktop\学习\C++\C-primer-plus\implement python list based on C++\Python_lst\implement_link_list.cpp(485,22): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\admin\Desktop\学习\C++\C-primer-plus\implement python list based on C++\Python_lst\implement_link_list.cpp(485,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\admin\Desktop\学习\C++\C-primer-plus\implement python list based on C++\Python_lst\implement_link_list.cpp(489,14): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\admin\Desktop\学习\C++\C-primer-plus\implement python list based on C++\Python_lst\implement_link_list.cpp(250): warning C4715: 'Link_list::remove': not all control paths return a value
+C:\Users\admin\Desktop\学习\C++\C-primer-plus\implement python list based on C++\Python_lst\implement_link_list.cpp(296): warning C4715: 'Link_list::remove': not all control paths return a value
+C:\Users\admin\Desktop\学习\C++\C-primer-plus\implement python list based on C++\Python_lst\implement_link_list.cpp(469): warning C4715: 'Link_list::find_nth': not all control paths return a value
+     Creating library C:\Users\admin\Desktop\??\C++\C-primer-plus\implement python list based on C++\Python_lst\Debug\Test.lib and object C:\Users\admin\Desktop\??\C++\C-primer-plus\implement python list based on C++\Python_lst\Debug\Test.exp
+  Test.vcxproj -> C:\Users\admin\Desktop\学习\C++\C-primer-plus\implement python list based on C++\Python_lst\Debug\Test.dll

@@ -1,0 +1,2 @@
+C:\Users\admin\Desktop\学习\C++\C-primer-plus\C++ primer plus\实现python列表简单的功能\Python_lst\Debug\Python_lst.exe
+C:\Users\admin\Desktop\学习\C++\C-primer-plus\implement python list based on C++\Python_lst\Debug\Python_lst.exe

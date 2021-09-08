@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GtaTestDurations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Executable>C:\Users\admin\Desktop\学习\C++\C-primer-plus\implement python list based on C++\Python_lst\Debug\Sample-Test1.exe</Executable>
+  <TestDurations>
+    <TestDuration Test="TestCaseName.TestName" Duration="1" />
+    <TestDuration Test="Test_class.sb" Duration="1" />
+  </TestDurations>
+</GtaTestDurations>

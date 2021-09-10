@@ -38,8 +38,8 @@ void Snake::addPoint(int x, int y)
 	//如果原来头不为空，改为身子
 	if (pHead != NULL)
 	{
+		//原来头部坐标放入“x"
 		wall.setWall(pHead->x, pHead->y, 'x');
-
 		gotoxy1(hOut1, pHead->y*2, pHead->x);
 		cout << "x";
 	}
@@ -47,7 +47,7 @@ void Snake::addPoint(int x, int y)
 	newpoint->next = pHead;
 	pHead = newpoint;//更新头部
 	wall.setWall(pHead->x, pHead->y, '@');
-	gotoxy1(hOut1, pHead->y * 2, pHead->x);
+	gotoxy1(hOut1, pHead->y*2, pHead->x);
 	cout << "@";
 }
 
@@ -57,6 +57,7 @@ void Snake::InitSnake()
 	addPoint(5, 3);
 	addPoint(5, 4);
 	addPoint(5, 5);
+	addPoint(5, 6);
 }
 
 //移动时删除结点
@@ -79,7 +80,7 @@ void Snake::delPoint()
 	}
 	//删除尾结点
 	wall.setWall(pCur->x, pCur->y, ' ');
-	gotoxy1(hOut1, pCur->y * 2, pCur->x);
+	gotoxy1(hOut1, pCur->y*2, pCur->x);
 	cout << " ";
 	delete pCur;
 
@@ -204,6 +205,6 @@ int Snake::countList()
 int Snake::getScore()
 {
 	int size = countList();
-	int score = (size - 3) * 100;
+	int score = (size - 4) * 100;
 	return score;
 }

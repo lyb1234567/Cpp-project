@@ -21,7 +21,7 @@ HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);//定义显示器句柄变量
 int main()
 {
 	char choice;
-	cout << "Start the game or not(Y/N)";
+	cout << "Start the game or not(Y/N):";
 	cin >> choice;
 	system("cls");
 	while (choice == 'Y' || choice == 'y')
@@ -43,9 +43,10 @@ int main()
 		Snake snake(wall, food);
 		snake.InitSnake();
 
-
-
 		gotoxy(hOut, 0, Wall::ROW);
+		int x = 27;
+		int y = 0;
+		int count = 1;
 		cout << "Score:" << snake.getScore() << " point" << endl;
 		//gotoxy(hOut, 10, 5);//y*2 x 
 		//接受用户的输入
@@ -95,14 +96,12 @@ int main()
 					}
 				}
 				else
-				{
+				{  
 					key = preKey;//强制将错误按键变为上一次移动的方向
 				}
 
 			} while (!_kbhit());//当没有键盘输入的时候返回0
-
 		}
-		system("cls");
 		cout << "Restart the game(Y/N):";
 		cin >> choice;
 		system("cls");

@@ -18,10 +18,47 @@ void gotoxy(HANDLE hOut, int x, int y)
 HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);//定义显示器句柄变量
 
 
+void print_snake()
+{
+	int a = 10;
+	int b = 0;
+	while (a >= 5)
+	{
+		gotoxy(hOut, a, b);
+		cout << "#" << " ";
+		a--;
+	}
+	while (b <= 5)
+	{
+		gotoxy(hOut, a, b);
+		cout << "#";
+		b++;
+	}
+	while (a <= 10)
+	{
+		gotoxy(hOut, a, b);
+		cout << "#";
+		a++;
+	}
+	while(b<=10)
+	{
+		gotoxy(hOut, a, b);
+		cout << "#";
+		b++;
+	}
+	while (a >= 5)
+	{
+		gotoxy(hOut, a, b);
+		cout << "#";
+		a--;
+	}
+}
 int main()
 {
 	char choice;
-	cout << "Start the game or not(Y/N):";
+	int a = 0;
+	int b = 0;
+	cout << "Start a game or not:";
 	cin >> choice;
 	system("cls");
 	while (choice == 'Y' || choice == 'y')

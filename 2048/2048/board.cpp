@@ -31,6 +31,10 @@ void Board::drawall()
 			//画的时候多加一个空格，看起来好看一些
 			cout << gameborad[i][j] << " ";
 		}
+		if (i == 3)
+		{
+			cout << "Game:2048";
+		}
 		if (i == 4)
 		{
 			cout << "Version: 1.0";
@@ -57,4 +61,13 @@ void Board::drawall()
 		}
 		cout << endl;
 	}
+}
+void Board::setnumber(int x, int y, int n)
+{
+	gameborad[x][y] = n;
+}
+
+int Board::getnumber(int x, int y)
+{
+	return gameborad[x][y];
 }

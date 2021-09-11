@@ -62,7 +62,7 @@ void Board::drawall()
 		cout << endl;
 	}
 }
-void Board::setnumber(int x, int y, int n)
+void Board::setnumber(int x, int y, char n)
 {
 	gameborad[x][y] = n;
 }
@@ -70,4 +70,27 @@ void Board::setnumber(int x, int y, int n)
 int Board::getnumber(int x, int y)
 {
 	return gameborad[x][y];
+}
+bool Board::check_full()
+{
+	int count = 0;
+	int number[4] = { 3,9,15,21 };
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			if (gameborad[number[i]][number[j]] != ' ')
+			{
+				count = count + 1;
+			}
+		}
+	}
+	if (count == 16)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

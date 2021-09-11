@@ -18,6 +18,7 @@ public:
 	void setNumber();
 	bool moveNumber(char key);
 	void addNumber();
+	bool deleteNumber(int x,int y);
 	int FoodX;
 	int FoodY;
 

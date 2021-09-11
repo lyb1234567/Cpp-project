@@ -14,6 +14,7 @@ Number::Number(Board& bd) :board(bd)
 {
 
 }
+//设置随机的两个数字在游戏开始时候
 void Number::setNumber()
 {
 	//为了保持数字在方格中间，使得数字坐标为3的奇数倍。
@@ -75,6 +76,8 @@ void Number::setNumber()
 
 	}
 }
+
+//在棋盘上随机添加数字2
 void Number::addNumber()
 {
 	int number[4] = { 3,9,15,21 };
@@ -107,17 +110,48 @@ void Number::addNumber()
 	}
 	
 }
-//bool Number::moveNumber(char key)
-//{
-//	int number[4] = { 3,9,15,21 };
-//	if (key == UP)
-//	{
-//		while (1)
-//		{
-//			for (int i = 0; i < 4; i++)
-//			{
-//
-//			}
-//		}
-//	}
-//}
+
+//在棋盘上减少数字
+bool Number::deleteNumber(int x,int y)
+{
+	if (board.getnumber(x, y) == ' ')
+	{
+		return false;
+	}
+	else
+	{
+		board.setnumber(x, y, ' ');
+		gotoxy2(hOut2, y * 2, x);
+		cout << " ";
+		return true;
+	}
+}
+/*
+2048的基本逻辑就是，假如按键向上，有数字的一列中，先判断是否最顶端有数字，假如没有数字则跑到最顶端，假如有数字则判断两个数字是否一致，数字一致就叠加，数字不一致，则
+该列中每一个数字都会根据列排开。其他方向一次类推
+*/
+bool Number::moveNumber(char key)
+{
+	int number[4] = { 3,9,15,21 };
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			if (board.getnumber(number[i], number[j]) != ' ')
+			{
+				if (key == UP)
+				{
+					if (number[i] == 3 && number[j]==3)
+					{
+						continue;
+					}
+					else
+					{
+						
+					}
+				}
+			}
+		}
+	}
+
+}

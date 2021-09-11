@@ -10,8 +10,9 @@ public:
 	};
 	void initwall();
 	void drawall();
-	void setnumber(int x, int y, int n);
+	void setnumber(int x, int y, char n);
 	int getnumber(int x,int y);
+	bool check_full();
 private:
 	char gameborad[ROW][COL]; 
 

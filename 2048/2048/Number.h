@@ -19,9 +19,11 @@ public:
 	void moveNumber(char key);
 	void addNumber();
 	bool deleteNumber(int x,int y);
-	int FoodX;
-	int FoodY;
-
+	bool move_Right(int x,int y);
+	bool move_LEFT(int x,int y);
+	bool move_UP(int x,int y);
+	bool move_DOWN(int x,int y);
+	int move = 0;
 	Board& board;
 };
 #endif // !NUMBER_H_

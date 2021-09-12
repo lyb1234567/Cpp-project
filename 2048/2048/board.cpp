@@ -18,12 +18,14 @@ void Board::initwall()
 			}
 			else
 			{
-				gameborad[i][j]= ' ';
+				gameborad[i][j]= " ";
+				nodearray_horizontal[i][j].data = "*";
+				nodearray_vertical[i][j].data = "*";
 				if (((i / 3) % 2 == 1) &&( (j / 3) % 2) == 1)
 				{
 					//存放一个字符为空的结点
-					nodearray_horizontal[i][j].data = ' ';
-					nodearray_vertical[i][j].data = ' ';
+					nodearray_horizontal[i][j].data = " ";
+					nodearray_vertical[i][j].data = " ";
 				}
 			}
 		}
@@ -39,8 +41,10 @@ void Board::initwall()
 			x = number[i];
 			y = number[j+1];
 
+			//横向
 			nodearray_horizontal[number[i]][number[j]].next = &nodearray_horizontal[x][y];
 			nodearray_horizontal[x][y].prev = &nodearray_horizontal[number[i]][number[j]];
+			//纵向
 			nodearray_vertical[number[j]][number[i]].next = &nodearray_vertical[y][x];
 			nodearray_vertical[y][x].prev = &nodearray_vertical[number[j]][number[i]];
 		}
@@ -55,7 +59,7 @@ void Board::drawall()
 		for (int j = 0; j < COL; ++j)
 		{
 			//画的时候多加一个空格，看起来好看一些
-			cout << gameborad[i][j] << " ";
+			cout << gameborad[i][j]<< " ";
 		}
 		if (i == 3)
 		{
@@ -88,13 +92,15 @@ void Board::drawall()
 		cout << endl;
 	}
 }
-void Board::setnumber(int x, int y, char n)
+void Board::setnumber(int x, int y, string n)
 {
 
 	gameborad[x][y] = n;
+	nodearray_horizontal[x][y].data = n;
+	nodearray_vertical[x][y].data = n;
 }
 
-int Board::getnumber(int x, int y)
+string Board::getnumber(int x, int y)
 {
 	return gameborad[x][y];
 }
@@ -106,7 +112,7 @@ bool Board::check_full()
 	{
 		for (int j = 0; j < 4; j++)
 		{
-			if (gameborad[number[i]][number[j]] != ' ')
+			if (gameborad[number[i]][number[j]] != " ")
 			{
 				count = count + 1;
 			}

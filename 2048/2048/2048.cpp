@@ -16,7 +16,7 @@ HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 using namespace std;
 int main()
 {
-	/*srand((unsigned int)time(NULL));
+	srand((unsigned int)time(NULL));
 	Board board;
 	board.initwall();
 	board.drawall();
@@ -28,11 +28,6 @@ int main()
 		char key = _getch();
 		number.moveNumber(key);
 	}
-	gotoxy(hOut, 0, 27);*/
-	list a;
-	a.push_head('3');
-	a.push_tail('4');
-	a.push_tail('5');
-	a.display_end();
+	gotoxy(hOut, 0, 27);
 	return 0;
 }

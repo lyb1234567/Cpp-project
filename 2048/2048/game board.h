@@ -12,13 +12,13 @@ public:
 	list a;
 	void initwall();
 	void drawall();
-	void setnumber(int x, int y, char n);
-	int getnumber(int x,int y);
+	void setnumber(int x, int y, string n);
+	string getnumber(int x,int y);
 	bool check_full();
-private:
 	Node nodearray_horizontal[ROW][COL];
 	Node nodearray_vertical[ROW][COL];
-	char gameborad[ROW][COL]; 
+private:
+	string gameborad[ROW][COL]; 
 
 
 	  

@@ -28,24 +28,24 @@ void Number::setNumber()
 	while (true)
 	{
 		int x = rand() % 2;
-		char n;
+		string n;
 		string out;
 		if (sample[x] == 2)
 		{
-			n = '2';
+			n = "2";
 			out = "2";
 		}
 		if (sample[x] == 4)
 		{
-			n = '4';
+			n = "4";
 			out = "4";
 		}
-		if (board.getnumber(number[x1], number[y1]) == ' ')
+		if (board.getnumber(number[x1], number[y1]) == " ")
 		{
-			board.setnumber(number[x1], number[y1], '2');
+			board.setnumber(number[x1], number[y1], "2");
 			gotoxy2(hOut2,  number[y1]* 2, number[x1]);
 			cout << "2";
-			if (board.getnumber(number[x2], number[y2]) == ' ')
+			if (board.getnumber(number[x2], number[y2]) == " ")
 			{
 				board.setnumber(number[x2], number[y2], n);
 				gotoxy2(hOut2, number[y2] * 2, number[x2]);
@@ -86,9 +86,9 @@ void Number::addNumber()
 	int number[4] = { 3,9,15,21 };
 	int x1 = rand() % 4;
 	int y1 = rand() % 4;
-	if (board.getnumber(number[x1], number[y1]) == ' ')
+	if (board.getnumber(number[x1], number[y1]) == " ")
 	{
-		board.setnumber(number[x1], number[y1], '2');
+		board.setnumber(number[x1], number[y1], "2");
 		gotoxy2(hOut2, number[y1] * 2, number[x1]);
 		cout << '2';
 	}
@@ -98,9 +98,9 @@ void Number::addNumber()
 		{
 			x1 = rand() % 4;
 			y1 = rand() % 4;
-			if (board.getnumber(number[x1], number[y1]) == ' ')
+			if (board.getnumber(number[x1], number[y1]) == " ")
 			{
-				board.setnumber(number[x1], number[y1], '2');
+				board.setnumber(number[x1], number[y1], "2");
 				gotoxy2(hOut2, number[y1] * 2, number[x1]);
 				cout << '2';
 				break;
@@ -117,15 +117,14 @@ void Number::addNumber()
 //在棋盘上减少数字
 bool Number::deleteNumber(int x,int y)
 {
-	if (board.getnumber(x, y) == ' ')
+	if (board.getnumber(x, y) == " ")
 	{
 		return false;
 	}
 	else
 	{
-		board.setnumber(x, y, ' ');
+		board.setnumber(x, y, " ");
 		gotoxy2(hOut2, y * 2, x);
-		cout << " ";
 		return true;
 	}
 }
@@ -142,17 +141,11 @@ void Number::moveNumber(char key)
 		{
 			int x = number[i];
 			int y = number[j];
-			if (board.getnumber(x, y) != ' ')
+			if (board.getnumber(x, y) != " ")
 			{
 				if (key == UP)
 				{
-					for (int k = 0; k < 4; k++)
-					{
-						if (board.getnumber(number[k], y) != ' ' && number[k] != x && board.getnumber(x, y) == board.getnumber(number[k], y))
-						{
-
-						}
-					}
+					move_UP(x,y);
 				}
 			}
 		}
@@ -162,4 +155,42 @@ void Number::moveNumber(char key)
 	board.drawall();
 
 
+}
+bool Number::move_UP(int x,int y)
+{
+	int number[4] = { 3,9,15,21 };
+	int temp_x = x;
+	int temp_y= y;
+	Node *temp = &board.nodearray_vertical[x][y];
+	Node* cur = temp;
+	while (cur->prev)
+	{
+		temp = temp->prev;
+		temp_x = temp_x - 3;
+		if (temp->data != " ")
+		{
+			if (cur->data == temp->data)
+			{
+				deleteNumber(x, y);
+				int a = stoi(temp->data);
+				int b = stoi(cur->data);
+				int c = a + b;
+				cur = temp;
+				board.setnumber(temp_x, temp_y,to_string(c));
+				move = move + 1;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else if (temp->data == " ")
+		{
+			deleteNumber(x, y);
+			board.setnumber(temp_x, temp_y, cur->data);
+			cur = temp;
+			move = move + 1;
+		}
+	}
+	return true;
 }

@@ -13,7 +13,7 @@ int list::len()
     }
     return i;
 }
-void list:: push_head(char new_data)
+void list:: push_head(string new_data)
 {
     Node* new_node = new Node();
     new_node->data = new_data;
@@ -25,7 +25,7 @@ void list:: push_head(char new_data)
     }
     head = new_node;
 }
-void list::push_tail(char new_data)
+void list::push_tail(string new_data)
 {
     Node* temp = new Node();
     temp->data = new_data;
@@ -72,7 +72,7 @@ void list::display_head()
         cout << "NULL";
     }
 }
-double list::find(int index)
+string list::find(int index)
 {
     int count = 0;
     Node* temp = head;
@@ -92,9 +92,9 @@ double list::find(int index)
             return temp->data;
         }
     }
-    return -1;
+    return " ";
 }
-bool list::remove(char a)
+bool list::remove(string a)
 {
     if (len() == 0)
     {

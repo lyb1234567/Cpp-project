@@ -4,7 +4,7 @@ using namespace std;
 class Node
 {
 public:
-	char data;
+	string data;
 	Node* next = NULL;
 	Node* prev= NULL;
 };
@@ -15,13 +15,13 @@ private:
 	Node* tail = NULL;
 public:
 	Node* get_end();
-	void push_head(char new_data);
-	void push_tail(char new_data);
+	void push_head(string new_data);
+	void push_tail(string new_data);
 	void display_head();
 	void display_end();
-	bool remove(char a);
+	bool remove(string a);
 	Node* get_head() { return head; };
-	double find(int index);
+	string find(int index);
 	int len();
 };
 #pragma once

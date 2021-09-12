@@ -28,23 +28,26 @@ void Number::setNumber()
 	while (true)
 	{
 		int x = rand() % 2;
+		char n;
 		string out;
 		if (sample[x] == 2)
 		{
+			n = '2';
 			out = "2";
 		}
 		if (sample[x] == 4)
 		{
+			n = '4';
 			out = "4";
 		}
 		if (board.getnumber(number[x1], number[y1]) == ' ')
 		{
-			board.setnumber(number[x1], number[y1], 2);
+			board.setnumber(number[x1], number[y1], '2');
 			gotoxy2(hOut2,  number[y1]* 2, number[x1]);
 			cout << "2";
 			if (board.getnumber(number[x2], number[y2]) == ' ')
 			{
-				board.setnumber(number[x2], number[y2], sample[x]);
+				board.setnumber(number[x2], number[y2], n);
 				gotoxy2(hOut2, number[y2] * 2, number[x2]);
 				cout << out;
 			}
@@ -66,7 +69,7 @@ void Number::setNumber()
 					}
 
 				}
-				board.setnumber(number[x2], number[y2], sample[x]);
+				board.setnumber(number[x2], number[y2], n);
 				gotoxy2(hOut2, number[y2] * 2, number[x2]);
 				cout << out;
 			}
@@ -85,9 +88,9 @@ void Number::addNumber()
 	int y1 = rand() % 4;
 	if (board.getnumber(number[x1], number[y1]) == ' ')
 	{
-		board.setnumber(number[x1], number[y1], 2);
+		board.setnumber(number[x1], number[y1], '2');
 		gotoxy2(hOut2, number[y1] * 2, number[x1]);
-		cout << "2";
+		cout << '2';
 	}
 	else
 	{
@@ -97,9 +100,9 @@ void Number::addNumber()
 			y1 = rand() % 4;
 			if (board.getnumber(number[x1], number[y1]) == ' ')
 			{
-				board.setnumber(number[x1], number[y1], 2);
+				board.setnumber(number[x1], number[y1], '2');
 				gotoxy2(hOut2, number[y1] * 2, number[x1]);
-				cout << "2";
+				cout << '2';
 				break;
 			}
 			else
@@ -130,28 +133,33 @@ bool Number::deleteNumber(int x,int y)
 2048的基本逻辑就是，假如按键向上，有数字的一列中，先判断是否最顶端有数字，假如没有数字则跑到最顶端，假如有数字则判断两个数字是否一致，数字一致就叠加，数字不一致，则
 该列中每一个数字都会根据列排开。其他方向一次类推
 */
-bool Number::moveNumber(char key)
+void Number::moveNumber(char key)
 {
 	int number[4] = { 3,9,15,21 };
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 4; j++)
 		{
-			if (board.getnumber(number[i], number[j]) != ' ')
+			int x = number[i];
+			int y = number[j];
+			if (board.getnumber(x, y) != ' ')
 			{
 				if (key == UP)
 				{
-					if (number[i] == 3 && number[j]==3)
+					for (int k = 0; k < 4; k++)
 					{
-						continue;
-					}
-					else
-					{
-						
+						if (board.getnumber(number[k], y) != ' ' && number[k] != x && board.getnumber(x, y) == board.getnumber(number[k], y))
+						{
+
+						}
 					}
 				}
 			}
 		}
 	}
+	addNumber();
+	gotoxy2(hOut2, 0, 0);
+	board.drawall();
+
 
 }

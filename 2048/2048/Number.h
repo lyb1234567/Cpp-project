@@ -16,7 +16,7 @@ public:
 	};
 	Number(Board& board);
 	void setNumber();
-	bool moveNumber(char key);
+	void moveNumber(char key);
 	void addNumber();
 	bool deleteNumber(int x,int y);
 	int FoodX;

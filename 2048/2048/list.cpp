@@ -1,5 +1,6 @@
 #include"list.h"
 #include<iostream>
+#include<string>
 using namespace std;
 int list::len()
 {
@@ -12,14 +13,19 @@ int list::len()
     }
     return i;
 }
-void list::push_head(double new_data)
+void list:: push_head(char new_data)
 {
     Node* new_node = new Node();
     new_node->data = new_data;
     new_node->next = head;
+    new_node->prev = NULL;
+    if (head)
+    {
+        head->prev = new_node;
+    }
     head = new_node;
 }
-void list::push_tail(double new_data)
+void list::push_tail(char new_data)
 {
     Node* temp = new Node();
     temp->data = new_data;
@@ -36,6 +42,34 @@ void list::push_tail(double new_data)
             p = p->next;
         }
         p->next = temp;
+        temp->prev = p;
+        return;
+    }
+}
+void list::display_end()
+{
+    tail = get_end();
+    Node* temp = tail;
+    while (temp)
+    {
+
+        cout << temp->data << "<==>";
+        temp = temp->prev;
+    }
+    cout << "NULL";
+    return;
+}
+void list::display_head()
+{
+    Node* temp = head;
+    while (temp)
+    {
+        cout << temp->data << "<==>";
+        temp = temp->next;
+    }
+    if (temp == NULL)
+    {
+        cout << "NULL";
     }
 }
 double list::find(int index)
@@ -60,7 +94,7 @@ double list::find(int index)
     }
     return -1;
 }
-bool list::remove(double a)
+bool list::remove(char a)
 {
     if (len() == 0)
     {
@@ -105,4 +139,13 @@ bool list::remove(double a)
 
 
     }
+}
+Node* list::get_end()
+{
+    Node* temp = head;
+    while (temp->next)
+    {
+        temp = temp->next;
+    }
+    return temp;
 }

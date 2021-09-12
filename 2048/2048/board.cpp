@@ -1,10 +1,12 @@
 ﻿#include"game board.h"
+#include"list.h"
 #include<iostream>
 #include<string>
 using namespace std;
 void Board::initwall()
 {
 	int p = ROW / 4;
+	int number[4] = { 3,9,15,21 };
 	for (int i = 0; i < ROW; i++)
 	{
 		for (int j = 0; j < COL; j++)
@@ -17,8 +19,32 @@ void Board::initwall()
 			else
 			{
 				gameborad[i][j]= ' ';
+				if (((i / 3) % 2 == 1) &&( (j / 3) % 2) == 1)
+				{
+					//存放一个字符为空的结点
+					nodearray_horizontal[i][j].data = ' ';
+					nodearray_vertical[i][j].data = ' ';
+				}
 			}
 		}
+	}
+	int x;
+	int y;
+	int a;
+	int b;
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			x = number[i];
+			y = number[j+1];
+
+			nodearray_horizontal[number[i]][number[j]].next = &nodearray_horizontal[x][y];
+			nodearray_horizontal[x][y].prev = &nodearray_horizontal[number[i]][number[j]];
+			nodearray_vertical[number[j]][number[i]].next = &nodearray_vertical[y][x];
+			nodearray_vertical[y][x].prev = &nodearray_vertical[number[j]][number[i]];
+		}
+
 	}
 	
 }
@@ -64,6 +90,7 @@ void Board::drawall()
 }
 void Board::setnumber(int x, int y, char n)
 {
+
 	gameborad[x][y] = n;
 }
 

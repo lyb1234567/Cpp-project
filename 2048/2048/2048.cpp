@@ -28,6 +28,5 @@ int main()
 		char key = _getch();
 		number.moveNumber(key);
 	}
-	gotoxy(hOut, 0, 27);
 	return 0;
 }

@@ -3,6 +3,7 @@
 #include<iostream>
 #include<string>
 using namespace std;
+
 void Board::initwall()
 {
 	int p = ROW / 4;
@@ -15,18 +16,15 @@ void Board::initwall()
 			if (i == 0 || j == 0 || i == ROW - 1 || j == COL - 1||(i%p)==0||(j%p)==0)
 			{
 				gameborad[i][j] = '*';
+				nodearray_horizontal[i][j].data = " ";
+				nodearray_vertical[i][j].data = " ";
 			}
 			else
 			{
-				gameborad[i][j]= " ";
-				nodearray_horizontal[i][j].data = "*";
-				nodearray_vertical[i][j].data = "*";
-				if (((i / 3) % 2 == 1) &&( (j / 3) % 2) == 1)
-				{
-					//存放一个字符为空的结点
-					nodearray_horizontal[i][j].data = " ";
-					nodearray_vertical[i][j].data = " ";
-				}
+				gameborad[i][j]= " ";		
+				//存放一个字符为空的结点
+				nodearray_horizontal[i][j].data = " ";
+				nodearray_vertical[i][j].data = " ";
 			}
 		}
 	}
@@ -34,21 +32,53 @@ void Board::initwall()
 	int y;
 	int a;
 	int b;
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		for (int j = 0; j < 3; j++)
+		for (int j = 0; j < 4; j++)
 		{
-			x = number[i];
-			y = number[j+1];
+			int x = number[i];
+			int y = number[j];
 
-			//横向
-			nodearray_horizontal[number[i]][number[j]].next = &nodearray_horizontal[x][y];
-			nodearray_horizontal[x][y].prev = &nodearray_horizontal[number[i]][number[j]];
-			//纵向
-			nodearray_vertical[number[j]][number[i]].next = &nodearray_vertical[y][x];
-			nodearray_vertical[y][x].prev = &nodearray_vertical[number[j]][number[i]];
+			if (j == 0)
+			{
+				nodearray_horizontal[x][y].prev = NULL;
+				nodearray_horizontal[x][y].next = &nodearray_horizontal[x][y+6];
+			}
+			else if (j == 3)
+			{
+				nodearray_horizontal[x][y].next = NULL;
+				nodearray_horizontal[i][j].prev = &nodearray_horizontal[x][y-6];
+			}
+			else
+			{
+				nodearray_horizontal[x][y].next = &nodearray_horizontal[x][y+6];
+				nodearray_horizontal[x][y].prev = &nodearray_horizontal[x][y-6];
+			}
 		}
 
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			int x = number[i];
+			int y = number[j];
+			if (i == 0)
+			{
+				nodearray_vertical[x][y].next = &nodearray_horizontal[x + 6][y];
+				nodearray_vertical[x][y].prev = NULL;
+			}
+			else if (i == 3)
+			{
+				nodearray_vertical[x][y].next = NULL;
+				nodearray_vertical[x][y].prev= &nodearray_horizontal[x-6][y];
+			}
+			else
+			{
+				nodearray_vertical[x][y].next = &nodearray_vertical[x + 6][y];
+				nodearray_vertical[x][y].prev = &nodearray_vertical[x - 6][y];
+			}
+		}
 	}
 	
 }

@@ -150,7 +150,6 @@ void Number::moveNumber(char key)
 			}
 		}
 	}
-	addNumber();
 	gotoxy2(hOut2, 0, 0);
 	board.drawall();
 
@@ -163,34 +162,36 @@ bool Number::move_UP(int x,int y)
 	int temp_y= y;
 	Node *temp = &board.nodearray_vertical[x][y];
 	Node* cur = temp;
+	string str = temp->data;
 	while (cur->prev)
 	{
-		temp = temp->prev;
-		temp_x = temp_x - 3;
-		if (temp->data != " ")
-		{
-			if (cur->data == temp->data)
-			{
-				deleteNumber(x, y);
-				int a = stoi(temp->data);
-				int b = stoi(cur->data);
-				int c = a + b;
-				cur = temp;
-				board.setnumber(temp_x, temp_y,to_string(c));
-				move = move + 1;
-			}
-			else
-			{
-				return false;
-			}
-		}
-		else if (temp->data == " ")
-		{
-			deleteNumber(x, y);
-			board.setnumber(temp_x, temp_y, cur->data);
+	   temp = temp->prev;
+       if (temp->data == " ")
+	   {
+			deleteNumber(temp_x, y);
+			temp_x = temp_x - 6;
+			board.setnumber(temp_x, temp_y, str);
 			cur = temp;
 			move = move + 1;
-		}
+	   }
+	   else if (temp->data != " ")
+	   {
+		   if (temp->data == str)
+		   {
+			   deleteNumber(temp_x, y);
+			   temp_x = temp_x - 6;
+			   int a = stoi(temp->data);
+			   int b = stoi(cur->data);
+			   int c = a + b;
+			   cur = temp;
+			   board.setnumber(temp_x, temp_y, to_string(c));
+			   move = move + 1;
+		   }
+		   else if (temp->data != str)
+		   {
+			   continue;
+		   }
+	   }
 	}
 	return true;
 }

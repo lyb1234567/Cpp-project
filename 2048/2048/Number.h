@@ -18,6 +18,7 @@ public:
 	void setNumber();
 	void moveNumber(char key);
 	void addNumber();
+	int move_count() { return move; };
 	bool deleteNumber(int x,int y);
 	bool move_Right(int x,int y);
 	bool move_LEFT(int x,int y);

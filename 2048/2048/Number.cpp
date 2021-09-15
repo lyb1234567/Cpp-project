@@ -1,6 +1,7 @@
 ﻿#include"Number.h"
 #include"game board.h"
 #include<Windows.h>
+#include<string>
 #include"list.h"
 void gotoxy2(HANDLE hOut2, int x, int y)
 {
@@ -89,10 +90,9 @@ void Number::addNumber()
 	if (board.getnumber(number[x1], number[y1]) == " ")
 	{
 		board.setnumber(number[x1], number[y1], "2");
-		gotoxy2(hOut2, number[y1] * 2, number[x1]);
-		cout << '2';
+		return;
 	}
-	else
+	else if(board.getnumber(number[x1], number[y1]) != " ")
 	{
 		while (1)
 		{
@@ -102,8 +102,8 @@ void Number::addNumber()
 			{
 				board.setnumber(number[x1], number[y1], "2");
 				gotoxy2(hOut2, number[y1] * 2, number[x1]);
-				cout << '2';
 				break;
+				return;
 			}
 			else
 			{
@@ -150,10 +150,10 @@ void Number::moveNumber(char key)
 			}
 		}
 	}
-	gotoxy2(hOut2, 0, 0);
-	board.drawall();
-
-
+	move++;
+	addNumber();
+	gotoxy2(hOut2, 0, 26);
+	cout << "Move:" << move;
 }
 bool Number::move_UP(int x,int y)
 {
@@ -161,37 +161,36 @@ bool Number::move_UP(int x,int y)
 	int temp_x = x;
 	int temp_y= y;
 	Node *temp = &board.nodearray_vertical[x][y];
-	Node* cur = temp;
+	Node* cur;
 	string str = temp->data;
-	while (cur->prev)
+	while (temp->prev)
 	{
 	   temp = temp->prev;
+	   cur = temp->next;
        if (temp->data == " ")
 	   {
 			deleteNumber(temp_x, y);
 			temp_x = temp_x - 6;
 			board.setnumber(temp_x, temp_y, str);
-			cur = temp;
-			move = move + 1;
 	   }
 	   else if (temp->data != " ")
 	   {
-		   if (temp->data == str)
+		   if (temp->data != cur->data)
 		   {
-			   deleteNumber(temp_x, y);
-			   temp_x = temp_x - 6;
+			   break;
+		   }
+		   else
+		   {
 			   int a = stoi(temp->data);
 			   int b = stoi(cur->data);
 			   int c = a + b;
-			   cur = temp;
-			   board.setnumber(temp_x, temp_y, to_string(c));
-			   move = move + 1;
-		   }
-		   else if (temp->data != str)
-		   {
-			   continue;
+			   string d = to_string(c);
+			   temp_x = temp_x - 6;
+			   board.setnumber(temp_x, temp_y, d);
+			   deleteNumber(temp_x+6, y);
 		   }
 	   }
+
 	}
 	return true;
 }

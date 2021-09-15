@@ -65,13 +65,13 @@ void Board::initwall()
 			int y = number[j];
 			if (i == 0)
 			{
-				nodearray_vertical[x][y].next = &nodearray_horizontal[x + 6][y];
+				nodearray_vertical[x][y].next = &nodearray_vertical[x + 6][y];
 				nodearray_vertical[x][y].prev = NULL;
 			}
 			else if (i == 3)
 			{
 				nodearray_vertical[x][y].next = NULL;
-				nodearray_vertical[x][y].prev= &nodearray_horizontal[x-6][y];
+				nodearray_vertical[x][y].prev= &nodearray_vertical[x-6][y];
 			}
 			else
 			{

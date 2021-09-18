@@ -25,6 +25,7 @@ public:
 	bool move_UP(int x,int y);
 	bool move_DOWN(int x,int y);
 	int move = 0;
+	int score = 0;
 	Board& board;
 };
 #endif // !NUMBER_H_

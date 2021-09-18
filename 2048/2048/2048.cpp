@@ -35,10 +35,15 @@ int main()
 	srand((unsigned int)time(NULL));
 	Board board;
 	board.initwall();
+	//board.setnumber(3, 15, "3");
+	//board.setnumber(3, 21, "2");
+	//board.setnumber(3, 9, "4");
+	//board.setnumber(3, 3, "4");
 	board.drawall();
 	Number number(board);
 	int  i = 0;
 	number.setNumber();
+	Node* temp = &board.nodearray_horizontal[3][21];
 	while (1) 
 	{
 		set_cursor(true);

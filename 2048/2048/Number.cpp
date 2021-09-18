@@ -147,12 +147,26 @@ void Number::moveNumber(char key)
 				{
 					move_UP(x,y);
 				}
+				else if (key == DOWN)
+				{
+					move_DOWN(x, y);
+				}
+				else if (key == LEFT)
+				{
+					move_LEFT(x, y);
+				}
+				else if (key == RIGHT)
+				{
+					move_Right(x, y);
+				}
 			}
 		}
 	}
 	addNumber();
 	gotoxy2(hOut2, 0, 26);
 	cout << "Move:" << move;
+	gotoxy2(hOut2, 10, 26);
+	cout << "Score:" << score;
 }
 bool Number::move_UP(int x,int y)
 {
@@ -184,13 +198,143 @@ bool Number::move_UP(int x,int y)
 			   int a = stoi(temp->data);
 			   int b = stoi(cur->data);
 			   int c = a + b;
+			   score = score + c;
 			   string d = to_string(c);
 			   temp_x = temp_x - 6;
 			   board.setnumber(temp_x, temp_y, d);
 			   move++;
 			   deleteNumber(temp_x+6, y);
+			   break;
 		   }
 	   }
+
+	}
+	return true;
+}
+bool Number::move_DOWN(int x, int y)
+{
+	int number[4] = { 3,9,15,21 };
+	int temp_x = x;
+	int temp_y = y;
+	Node* temp = &board.nodearray_vertical[x][y];
+	Node* cur;
+	string str = temp->data;
+	while (temp->next)
+	{
+		temp = temp->next;
+		cur = temp->prev;
+		if (temp->data == " ")
+		{
+			deleteNumber(temp_x, y);
+			temp_x = temp_x+6;
+			board.setnumber(temp_x, temp_y, str);
+			move++;
+		}
+		else if (temp->data != " ")
+		{
+			if (temp->data != cur->data)
+			{
+				break;
+			}
+			else if(temp->data == cur->data)
+			{
+				int a = stoi(temp->data);
+				int b = stoi(cur->data);
+				int c = a + b;
+				score = score + c;
+				string d = to_string(c);
+				temp_x = temp_x+6;
+				board.setnumber(temp_x, temp_y, d);
+				move++;
+				deleteNumber(temp_x-6, y);
+				break;
+			}
+		}
+		 
+	}
+	return true;
+}
+bool Number::move_Right(int x, int y)
+{
+	int number[4] = { 3,9,15,21 };
+	int temp_x = x;
+	int temp_y = y;
+	Node* temp = &board.nodearray_horizontal[x][y];
+	Node* cur;
+	string str = temp->data;
+	while (temp->next)
+	{
+		temp = temp->next;
+		cur = temp->prev;
+		if (temp->data == " ")
+		{
+			deleteNumber(x, temp_y);
+			temp_y = temp_y + 6;
+			board.setnumber(temp_x, temp_y, str);
+			move++;
+		}
+		else if (temp->data != " ")
+		{
+			if (temp->data != cur->data)
+			{
+				break;
+			}
+			else if (temp->data == cur->data)
+			{
+				int a = stoi(temp->data);
+				int b = stoi(cur->data);
+				int c = a + b;
+				score = score + c;
+				string d = to_string(c);
+				temp_y = temp_y + 6;
+				board.setnumber(temp_x, temp_y, d);
+				move++;
+				deleteNumber(x, temp_y-6);
+				break;
+			}
+		}
+	}
+	return true;
+}
+bool Number::move_LEFT(int x, int y)
+{
+	int number[4] = { 3,9,15,21 };
+	int temp_x = x;
+	int temp_y = y;
+	Node* temp = &board.nodearray_horizontal[x][y];
+	Node* cur;
+	string str = temp->data;
+	while (temp->prev)
+	{
+		temp = temp->prev;
+		cur = temp->next;
+		if (temp->data == " ")
+		{
+			deleteNumber(x, temp_y);
+			temp_y = temp_y - 6;
+			board.setnumber(temp_x, temp_y, str);
+			move++;
+		}
+		else if (temp->data != " ")
+		{
+			if (temp->data != cur->data)
+			{
+				break;
+			}
+			else
+			{
+				int a = stoi(temp->data);
+				int b = stoi(cur->data);
+				int c = a + b;
+				score = score + c;
+				string d = to_string(c);
+				temp_y = temp_y - 6;
+				board.setnumber(temp_x, temp_y, d);
+				move++;
+				deleteNumber(x, temp_y+6);
+				break;
+			}
+		}
 
 	}
 	return true;

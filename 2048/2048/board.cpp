@@ -47,7 +47,7 @@ void Board::initwall()
 			else if (j == 3)
 			{
 				nodearray_horizontal[x][y].next = NULL;
-				nodearray_horizontal[i][j].prev = &nodearray_horizontal[x][y-6];
+				nodearray_horizontal[x][y].prev = &nodearray_horizontal[x][y-6];
 			}
 			else
 			{

@@ -26,6 +26,10 @@ void Number::setNumber()
 	int y1 = rand() % 4;
 	int x2 = rand() % 4;
 	int y2 = rand() % 4;
+	if (board.check_full())
+	{
+		return;
+	}
 	while (true)
 	{
 		int x = rand() % 2;
@@ -338,4 +342,188 @@ bool Number::move_LEFT(int x, int y)
 
 	}
 	return true;
+}
+bool Number::game_over()
+{
+	if (!board.check_full())
+	{
+		return false;
+	}
+	else if(board.check_full())
+	{
+		int number[4] = { 3,9,15,21 };
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				if (i == 0)
+				{
+					if (j == 0)
+					{
+						int x = number[i];
+						int y = number[j];
+						string str1_ver = board.nodearray_vertical[x][y].data;
+						string str2_ver = board.nodearray_vertical[x][y].next->data;
+						string str1_hor = board.nodearray_horizontal[x][y].data;
+						string str2_hor = board.nodearray_horizontal[x][y].next->data;
+						if ((str1_ver == str2_ver) || (str1_hor == str2_hor))
+						{
+							return false;
+						}
+						else
+						{
+							continue;
+						}
+					}
+					else if (j == 3)
+					{
+						int x = number[i];
+						int y = number[j];
+						string str1_ver = board.nodearray_vertical[x][y].data;
+						string str2_ver = board.nodearray_vertical[x][y].next->data;
+						string str1_hor = board.nodearray_horizontal[x][y].data;
+						string str2_hor = board.nodearray_horizontal[x][y].prev->data;
+						if ((str1_ver == str2_ver) || (str1_hor == str2_hor))
+						{
+							return false;
+						}
+						else
+						{
+							continue;
+						}
+					}
+					else
+					{
+						int x = number[i];
+						int y = number[j];
+						string str1_ver = board.nodearray_vertical[x][y].data;
+						string str2_ver = board.nodearray_vertical[x][y].next->data;
+						string str1_hor = board.nodearray_horizontal[x][y].data;
+						string str2_hor = board.nodearray_horizontal[x][y].prev->data;
+						string str3_hor = board.nodearray_horizontal[x][y].next->data;
+						if ((str1_ver == str2_ver) || (str1_hor == str2_hor) || (str1_hor == str3_hor))
+						{
+							return false;
+						}
+						else
+						{
+							continue;
+						}
+					}
+				}
+				else if (i == 3)
+				{
+					if (j == 0)
+					{
+						int x = number[i];
+						int y = number[j];
+
+						string str1_ver = board.nodearray_vertical[x][y].data;
+						string str2_ver = board.nodearray_vertical[x][y].prev->data;
+						string str1_hor = board.nodearray_horizontal[x][y].data;
+						string str2_hor = board.nodearray_horizontal[x][y].next->data;
+						if ((str1_ver == str2_ver) || (str1_hor == str2_hor))
+						{
+							return false;
+						}
+						else
+						{
+							continue;
+						}
+					}
+					else if (j == 3)
+					{
+						int x = number[i];
+						int y = number[j];
+						string str1_ver = board.nodearray_vertical[x][y].data;
+						string str2_ver = board.nodearray_vertical[x][y].prev->data;
+						string str1_hor = board.nodearray_horizontal[x][y].data;
+						string str2_hor = board.nodearray_horizontal[x][y].prev->data;
+						if ((str1_ver == str2_ver) || (str1_hor == str2_hor))
+						{
+							return false;
+						}
+						else
+						{
+							continue;
+						}
+					}
+					else
+					{
+						int x = number[i];
+						int y = number[j];
+						string str1_ver = board.nodearray_vertical[x][y].data;
+						string str2_ver = board.nodearray_vertical[x][y].prev->data;
+						string str1_hor = board.nodearray_horizontal[x][y].data;
+						string str2_hor = board.nodearray_horizontal[x][y].prev->data;
+						string str3_hor = board.nodearray_horizontal[x][y].next->data;
+						if ((str1_ver == str2_ver) || (str1_hor == str2_hor) || (str1_hor == str3_hor))
+						{
+							return false;
+						}
+						else
+						{
+							continue;
+						}
+					}
+				}
+				else
+				{
+					int x = number[i];
+					int y = number[j];
+					if (j == 1 || j == 2)
+					{
+						string str1_ver = board.nodearray_vertical[x][y].data;
+						string str2_ver = board.nodearray_vertical[x][y].next->data;
+						string str3_ver = board.nodearray_vertical[x][y].prev->data;
+						string str1_hor = board.nodearray_horizontal[x][y].data;
+						string str2_hor = board.nodearray_horizontal[x][y].prev->data;
+						string str3_hor = board.nodearray_horizontal[x][y].next->data;
+						if ((str1_ver == str2_ver) || (str1_ver == str3_ver) || (str1_hor == str2_hor) || (str1_hor == str3_hor))
+						{
+							return false;
+						}
+						else
+						{
+							continue;
+						}
+					}
+					if (j == 0)
+					{
+						string str1_ver = board.nodearray_vertical[x][y].data;
+						string str2_ver = board.nodearray_vertical[x][y].next->data;
+						string str3_ver = board.nodearray_vertical[x][y].prev->data;
+						string str1_hor = board.nodearray_horizontal[x][y].data;
+						string str2_hor = board.nodearray_horizontal[x][y].next->data;;
+						if ((str1_ver == str2_ver) || (str1_ver == str3_ver) || (str1_hor == str2_hor))
+						{
+							return false;
+						}
+						else
+						{
+							continue;
+						}
+					}
+					if (j == 3)
+					{
+						string str1_ver = board.nodearray_vertical[x][y].data;
+						string str2_ver = board.nodearray_vertical[x][y].next->data;
+						string str3_ver = board.nodearray_vertical[x][y].prev->data;
+						string str1_hor = board.nodearray_horizontal[x][y].data;
+						string str2_hor = board.nodearray_horizontal[x][y].prev->data;;
+						if ((str1_ver == str2_ver) || (str1_ver == str3_ver) || (str1_hor == str2_hor))
+						{
+							return false;
+						}
+						else
+						{
+							continue;
+						}
+					}
+					
+				}
+			}
+		}
+		return true;
+	}
 }

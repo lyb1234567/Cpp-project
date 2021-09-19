@@ -25,6 +25,7 @@ public:
 	bool move_UP(int x,int y);
 	bool move_DOWN(int x,int y);
 	bool game_over();
+	bool check_2048();
 	int get_score() { return score; };
 	int move = 0;
 	int score = 0;

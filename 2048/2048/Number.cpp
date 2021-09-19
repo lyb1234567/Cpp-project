@@ -338,8 +338,29 @@ bool Number::move_LEFT(int x, int y)
 	}
 	return true;
 }
+bool Number::check_2048()
+{
+	int number[4] = { 3,9,15,21 };
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			int x = number[i];
+			int y = number[j];
+			if (board.getnumber(x, y) == "2048")
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
 bool Number::game_over()
 {
+	if (check_2048())
+	{
+		return true;
+	}
 	if (!board.check_full())
 	{
 		return false;
@@ -521,4 +542,5 @@ bool Number::game_over()
 		}
 		return true;
 	}
+
 }

@@ -181,6 +181,7 @@ bool Number::move_UP(int x,int y)
 	Node *temp = &board.nodearray_vertical[x][y];
 	Node* cur;
 	string str = temp->data;
+	int n=0;
 	while (temp->prev)
 	{
 	   temp = temp->prev;
@@ -208,6 +209,7 @@ bool Number::move_UP(int x,int y)
 			   board.setnumber(temp_x, temp_y, d);
 			   deleteNumber(temp_x+6, y);
 			   break;
+
 		   }
 	   }
 

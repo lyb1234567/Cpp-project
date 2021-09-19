@@ -7,12 +7,6 @@
 #include<fstream>
 #include<vector>
 #include"list.h"
-static int i = 0;
-void test()
-{
-	cout << i;
-	i++;
-}
 void gotoxy(HANDLE hOut, int x, int y)
 {
 	COORD pos;
@@ -40,10 +34,7 @@ void set_cursor(bool visible) {
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &info);
 }
 HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-
-
-using namespace std;
-int main()
+void start()
 {
 	ofstream outFile;
 	ifstream inFile;
@@ -51,6 +42,7 @@ int main()
 	outFile.open(filename, std::ios_base::app);
 	inFile.open(filename);
 	int Best = 0;
+	int new_Best = 0;
 	vector<int> score_array;
 	while (inFile.good())
 	{
@@ -62,6 +54,10 @@ int main()
 	srand((unsigned int)time(NULL));
 	Board board;
 	board.initwall();
+	board.setnumber(3, 21, "4");
+	board.setnumber(9, 21, "2");
+	board.setnumber(15, 21, "2");
+	board.setnumber(21, 21, "4");
 	board.drawall();
 	Number number(board);
 	int  i = 0;
@@ -81,17 +77,31 @@ int main()
 			char key = _getch();
 			number.moveNumber(key);
 			set_cursor(false);
-			gotoxy(hOut, 50, 26);
-			cout << "Best:" << Best;
+			gotoxy(hOut, 0, 27);
+			if (number.get_score() < Best)
+			{
+				cout << "Best:" << Best;
+			}
+			else
+			{
+				cout << "Best:" << number.get_score();
+			}
 			gotoxy(hOut, 0, 0);
 			board.drawall();
 		}
-		game_over= number.game_over();
+		game_over = number.game_over();
 	}
 	gotoxy(hOut, 0, 27);
 	cout << "game over";
 	int score = number.get_score();
 	outFile << score << endl;
 	outFile.close();
+
+}
+using namespace std;
+int main()
+{
+	
+	start();
 	return 0;
 }

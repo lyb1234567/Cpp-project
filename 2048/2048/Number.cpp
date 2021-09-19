@@ -166,6 +166,7 @@ void Number::moveNumber(char key)
 			}
 		}
 	}
+	move++;
 	addNumber();
 	gotoxy2(hOut2, 0, 26);
 	cout << "Move:" << move;
@@ -189,7 +190,6 @@ bool Number::move_UP(int x,int y)
 			deleteNumber(temp_x, y);
 			temp_x = temp_x - 6;
 			board.setnumber(temp_x, temp_y, str);
-			move++;
 	   }
 	   else if (temp->data != " ")
 	   {
@@ -206,7 +206,6 @@ bool Number::move_UP(int x,int y)
 			   string d = to_string(c);
 			   temp_x = temp_x - 6;
 			   board.setnumber(temp_x, temp_y, d);
-			   move++;
 			   deleteNumber(temp_x+6, y);
 			   break;
 		   }
@@ -232,7 +231,6 @@ bool Number::move_DOWN(int x, int y)
 			deleteNumber(temp_x, y);
 			temp_x = temp_x+6;
 			board.setnumber(temp_x, temp_y, str);
-			move++;
 		}
 		else if (temp->data != " ")
 		{
@@ -249,7 +247,6 @@ bool Number::move_DOWN(int x, int y)
 				string d = to_string(c);
 				temp_x = temp_x+6;
 				board.setnumber(temp_x, temp_y, d);
-				move++;
 				deleteNumber(temp_x-6, y);
 				break;
 			}
@@ -275,7 +272,6 @@ bool Number::move_Right(int x, int y)
 			deleteNumber(x, temp_y);
 			temp_y = temp_y + 6;
 			board.setnumber(temp_x, temp_y, str);
-			move++;
 		}
 		else if (temp->data != " ")
 		{
@@ -292,7 +288,6 @@ bool Number::move_Right(int x, int y)
 				string d = to_string(c);
 				temp_y = temp_y + 6;
 				board.setnumber(temp_x, temp_y, d);
-				move++;
 				deleteNumber(x, temp_y-6);
 				break;
 			}
@@ -317,7 +312,6 @@ bool Number::move_LEFT(int x, int y)
 			deleteNumber(x, temp_y);
 			temp_y = temp_y - 6;
 			board.setnumber(temp_x, temp_y, str);
-			move++;
 		}
 		else if (temp->data != " ")
 		{
@@ -334,7 +328,6 @@ bool Number::move_LEFT(int x, int y)
 				string d = to_string(c);
 				temp_y = temp_y - 6;
 				board.setnumber(temp_x, temp_y, d);
-				move++;
 				deleteNumber(x, temp_y+6);
 				break;
 			}

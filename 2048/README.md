@@ -38,6 +38,6 @@ You can run the game on Windows
 
 ### Used class
 
-1. Number
-2. Board
+1. [Number](https://github.com/lyb1234567/Cpp-project/blob/master/2048/2048/doc/Number.md)
+2. [Board](https://github.com/lyb1234567/Cpp-project/blob/master/2048/2048/doc/Board.md)
 

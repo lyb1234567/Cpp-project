@@ -54,14 +54,10 @@ void start()
 	srand((unsigned int)time(NULL));
 	Board board;
 	board.initwall();
-	board.setnumber(3, 21, "4");
-	board.setnumber(9, 21, "2");
-	board.setnumber(15, 21, "2");
-	board.setnumber(21, 21, "4");
-	board.drawall();
 	Number number(board);
 	int  i = 0;
 	number.setNumber();
+	board.drawall();
 	bool game_over = number.game_over();
 	while (!game_over)
 	{

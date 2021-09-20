@@ -48,13 +48,13 @@ void Number::setNumber()
 		if (board.getnumber(number[x1], number[y1]) == " ")
 		{
 			board.setnumber(number[x1], number[y1], "2");
-			gotoxy2(hOut2,  number[y1]* 2, number[x1]);
-			cout << "2";
+			//gotoxy2(hOut2,  number[y1]* 2, number[x1]);
+			//cout << "2";
 			if (board.getnumber(number[x2], number[y2]) == " ")
 			{
 				board.setnumber(number[x2], number[y2], n);
-				gotoxy2(hOut2, number[y2] * 2, number[x2]);
-				cout << out;
+				//gotoxy2(hOut2, number[y2] * 2, number[x2]);
+				//cout << out;
 			}
 			else 
 			{

@@ -2,6 +2,9 @@
 #include"list.h"
 #include<iostream>
 #include<string>
+#include<conio.h>
+#include<Windows.h>
+#include<iomanip>
 using namespace std;
 
 void Board::initwall()
@@ -82,6 +85,7 @@ void Board::initwall()
 	}
 	
 }
+HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 void Board::drawall()
 {
 	for (int i = 0; i < ROW; ++i)
@@ -89,7 +93,62 @@ void Board::drawall()
 		for (int j = 0; j < COL; ++j)
 		{
 			//画的时候多加一个空格，看起来好看一些
-			cout << gameborad[i][j]<< " ";
+			if (gameborad[i][j] == "2")
+			{
+				SetConsoleTextAttribute(hConsole, 2);
+				cout <<setw(3)<<gameborad[i][j];
+			}
+			else if (gameborad[i][j] == "4")
+			{
+				SetConsoleTextAttribute(hConsole, 12);
+				cout << setw(3) << gameborad[i][j];
+			}
+			else if (gameborad[i][j] == "8")
+			{
+				SetConsoleTextAttribute(hConsole, 13);
+				cout << setw(3) << gameborad[i][j];
+			}
+			else if (gameborad[i][j] == "16")
+			{
+				SetConsoleTextAttribute(hConsole, 14);
+				cout << setw(3) << gameborad[i][j];
+			}
+			else if (gameborad[i][j] == "32")
+			{
+				SetConsoleTextAttribute(hConsole, 6);
+				cout << setw(3) << gameborad[i][j];
+			}
+			else if (gameborad[i][j] == "64")
+			{
+				SetConsoleTextAttribute(hConsole, 3);
+				cout << setw(3) << gameborad[i][j];
+			}
+			else if (gameborad[i][j] == "128")
+			{
+				SetConsoleTextAttribute(hConsole, 3);
+				cout << setw(3) << gameborad[i][j];
+			}
+			else if (gameborad[i][j] == "256")
+			{
+				SetConsoleTextAttribute(hConsole, 5);
+				cout << setw(3) << gameborad[i][j];
+			}
+			else if (gameborad[i][j] == "512")
+			{
+				SetConsoleTextAttribute(hConsole, 11);
+				cout << setw(3) << gameborad[i][j];
+			}
+			else if (gameborad[i][j] == "1024")
+			{
+				SetConsoleTextAttribute(hConsole, 12);
+				cout << setw(3) << gameborad[i][j];
+			}
+			else
+			{
+				SetConsoleTextAttribute(hConsole, 7);
+				cout << setw(3) << gameborad[i][j];
+			}
+
 		}
 		if (i == 3)
 		{

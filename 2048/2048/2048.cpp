@@ -41,6 +41,7 @@ void start()
 	string filename = "score.txt";
 	outFile.open(filename, std::ios_base::app);
 	inFile.open(filename);
+	int timer = 0;
 	int Best = 0;
 	int new_Best = 0;
 	vector<int> score_array;
@@ -98,6 +99,6 @@ using namespace std;
 int main()
 {
 	
-	start();
+	start(); 
 	return 0;
 }

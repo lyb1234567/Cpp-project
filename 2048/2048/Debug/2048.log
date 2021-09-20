@@ -1,0 +1,3 @@
+﻿  2048.cpp
+C:\Users\admin\Desktop\学习\Cpp-project\2048\2048\2048.cpp(13,22): warning C4101: 'CursorInfo': unreferenced local variable
+  2048.vcxproj -> C:\Users\admin\Desktop\学习\Cpp-project\2048\2048\Debug\2048.exe

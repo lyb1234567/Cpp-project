@@ -30,10 +30,14 @@ You can run the game on Windows
 1. Open your terminal in your preferred directory and clone the whole cpp project:
 
    ```
-   git clone https://github.com/lyb1234567/Cpp-project.git
+   git clone https://github.com/lyb1234567/Cpp-project.git   
    ```
 
-      
 
-   
+
+
+### Used class
+
+1. Number
+2. Board
 

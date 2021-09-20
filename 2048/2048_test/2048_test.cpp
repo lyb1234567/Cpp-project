@@ -49,5 +49,13 @@ namespace My2048test
 			Assert::AreEqual(0, c2->data.compare("16"));
 			Assert::AreEqual(0, c3->data.compare("32"));
 		}
+		TEST_METHOD(Board_Info)
+		{
+			Board board;
+			board.initwall();
+			board.setnumber(3, 3, "2");
+			string a = board.getnumber(3, 3);
+			Assert::AreEqual(0, a.compare("2"));
+		}
 	};
 }

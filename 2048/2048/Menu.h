@@ -1,11 +1,24 @@
-#ifndef MENU_H_
-#define MENU_H_
+﻿#ifndef MENU_H_
+#define MEUN_H_
+#include "game board.h"
+#include"Number.h"
+#include<iostream>
+#include<Windows.h>
+#include<ctime>
+#include<conio.h>
+#include<fstream>
+#include<vector>
+#include"list.h"
+#include<iostream>
+#include<string>
+using namespace std;
 class Menu
 {
 public:
-     Menu();
-
+	Menu();
+	void start();
+    string AsciiArt2048();
 };
-#endif // !MENU_H_
+#endif // !1
 
 #pragma once

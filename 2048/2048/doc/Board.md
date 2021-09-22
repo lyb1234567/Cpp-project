@@ -14,7 +14,7 @@ This class was used to initialize the whole wall and set numbers every time a nu
 
 [getnumber()](#getnumber)
 
-[check_full()](#check_full())
+[check_full()](check_full)
 
  
 

@@ -8,13 +8,13 @@ This class was used to initialize the whole wall and set numbers every time a nu
 
 [initwall()](#initwall)
 
-[drawwall()](drawwall)
+[drawwall()](#drawwall)
 
-[setnumber()](setnumber)
+[setnumber()](#setnumber)
 
-[getnumber()](getnumber)
+[getnumber()](#getnumber)
 
-[check_full()](check_full())
+[check_full()](#check_full())
 
  
 

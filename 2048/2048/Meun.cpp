@@ -18,6 +18,22 @@ void gotoxy3(HANDLE hOut2, int x, int y)
 	SetConsoleCursorPosition(hOut2, pos);
 }
 HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);//定义显示器句柄变量
+void sort(vector<int> &array)
+{
+	int temp;
+	for (int i = 0; i < array.size(); i++)
+	{
+		for (int j = i + 1; j < array.size(); j++)
+		{
+			if (array[i]<array[j])
+			{
+				temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+			}
+		}
+	}
+}
 void show_score()
 {
 	ifstream inFile;
@@ -30,6 +46,7 @@ void show_score()
 		inFile >> Best;
 		score_array.push_back(Best);
 	}
+	sort(score_array);
 	for (int i = 0; i < score_array.size(); i++)
 	{
 		cout << score_array[i] << endl;
@@ -47,7 +64,6 @@ int max_val(vector <int>& array)
 	}
 	return max;
 }
-
 void set_cursor(bool visible) {
 	CONSOLE_CURSOR_INFO info;
 	info.dwSize = 100;
@@ -137,13 +153,14 @@ Menu::Menu()
 void Menu::start()
 {
 	string title = AsciiArt2048();
-	cout << title;
+	gotoxy3(hOut, 100, 2);
+	cout <<title;
 
-		gotoxy3(hOut, 15, 15);
+		gotoxy3(hOut, 30, 15);
 		cout << "1:Start the game";
-		gotoxy3(hOut, 15, 16);
+		gotoxy3(hOut, 30, 16);
 		cout << "2:Show the score ranking";
-		gotoxy3(hOut, 15, 17);
+		gotoxy3(hOut, 30, 17);
 		cout << "Enter your choice:";
 		char choice;
 			cin >> choice;

@@ -355,6 +355,15 @@ bool Number::check_2048()
 	}
 	return false;
 }
+void Number::reset_move(int n)
+{
+	move = n;
+
+}
+void Number::reset_score(int n)
+{
+	score = n;
+}
 bool Number::game_over()
 {
 	if (check_2048())

@@ -8,10 +8,10 @@
 #include<vector>
 #include"list.h"
 #include"Menu.h"
+#include"used_function.h"
 using namespace std;
 int main()
 {
-	
 	Menu m;
 	m.start();
 	return 0;

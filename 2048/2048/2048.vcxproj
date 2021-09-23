@@ -144,12 +144,14 @@
     <ClCompile Include="list.cpp" />
     <ClCompile Include="Meun.cpp" />
     <ClCompile Include="Number.cpp" />
+    <ClCompile Include="used_function.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game board.h" />
     <ClInclude Include="list.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Number.h" />
+    <ClInclude Include="used_function.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

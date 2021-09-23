@@ -27,6 +27,8 @@ public:
 	bool game_over();
 	bool check_2048();
 	int get_score() { return score; };
+	void reset_move(int n);
+	void reset_score(int n);
 	int move = 0;
 	int score = 0;
 	Board& board;

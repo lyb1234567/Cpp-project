@@ -10,127 +10,8 @@
 #include<iostream>
 #include<string>
 #include"Menu.h"
-void gotoxy3(HANDLE hOut2, int x, int y)
-{
-	COORD pos;
-	pos.X = x; //横坐标
-	pos.Y = y; //纵坐标
-	SetConsoleCursorPosition(hOut2, pos);
-}
-HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);//定义显示器句柄变量
-void sort(vector<int> &array)
-{
-	int temp;
-	for (int i = 0; i < array.size(); i++)
-	{
-		for (int j = i + 1; j < array.size(); j++)
-		{
-			if (array[i]<array[j])
-			{
-				temp = array[i];
-				array[i] = array[j];
-				array[j] = temp;
-			}
-		}
-	}
-}
-void show_score()
-{
-	ifstream inFile;
-	string filename = "score.txt";
-	inFile.open(filename);
-	int Best;
-	vector<int> score_array;
-	while (inFile.good())
-	{
-		inFile >> Best;
-		score_array.push_back(Best);
-	}
-	sort(score_array);
-	for (int i = 0; i < score_array.size(); i++)
-	{
-		cout << score_array[i] << endl;
-	}
-}
-int max_val(vector <int>& array)
-{
-	int max = array[0];
-	for (auto i = array.begin(); i != array.end(); ++i)
-	{
-		if (max <= *i)
-		{
-			max = *i;
-		}
-	}
-	return max;
-}
-void set_cursor(bool visible) {
-	CONSOLE_CURSOR_INFO info;
-	info.dwSize = 100;
-	info.bVisible = visible;
-	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &info);
-}
-void game()
-{
-	ofstream outFile;
-	ifstream inFile;
-	string filename = "score.txt";
-	outFile.open(filename, std::ios_base::app);
-	inFile.open(filename);
-	int timer = 0;
-	int Best = 0;
-	int new_Best = 0;
-	vector<int> score_array;
-	while (inFile.good())
-	{
-		inFile >> Best;
-		score_array.push_back(Best);
-	}
-
-	Best = max_val(score_array);
-	srand((unsigned int)time(NULL));
-	Board board;
-	board.initwall();
-	Number number(board);
-	int  i = 0;
-	number.setNumber();
-	board.drawall();
-	bool game_over = number.game_over();
-	while (!game_over)
-	{
-		set_cursor(true);
-		gotoxy3(hOut, 0, 24);
-		int c = _getch();
-		if (c == 113)
-		{
-			break;
-		}
-		if (c == 224)
-		{
-			char key = _getch();
-			number.moveNumber(key);
-			set_cursor(false);
-			gotoxy3(hOut, 0, 27);
-			if (number.get_score() < Best)
-			{
-				cout << "Best:" << Best;
-			}
-			else
-			{
-				cout << "Best:" << number.get_score();
-			}
-			gotoxy3(hOut, 0, 0);
-			board.drawall();
-		}
-		game_over = number.game_over();
-	}
-	gotoxy3(hOut, 0, 27);
-	cout << "game over";
-	int score = number.get_score();
-	outFile << score << endl;
-	outFile.close();
-
-}
+#include"used_function.h"
+HANDLE hOut1 = GetStdHandle(STD_OUTPUT_HANDLE);
 string Menu::AsciiArt2048()
 {
 	constexpr auto title_card_2048 = R"(
@@ -153,25 +34,30 @@ Menu::Menu()
 void Menu::start()
 {
 	string title = AsciiArt2048();
-	gotoxy3(hOut, 100, 2);
 	cout <<title;
 
-		gotoxy3(hOut, 30, 15);
-		cout << "1:Start the game";
-		gotoxy3(hOut, 30, 16);
+		gotoxy3(hOut1, 30, 15);
+		cout << "1:Start a new game(q to save)";
+		gotoxy3(hOut1, 30, 16);
 		cout << "2:Show the score ranking";
-		gotoxy3(hOut, 30, 17);
+		gotoxy3(hOut1, 30, 17);
+		cout << "3:Continue with the last game";
+		gotoxy3(hOut1, 30, 18);
 		cout << "Enter your choice:";
 		char choice;
 			cin >> choice;
 			switch (choice)
 			{
 			case '1':
-				gotoxy3(hOut, 0, 0);
+				gotoxy3(hOut1, 0, 0);
 				game();
 				break;
 			case '2':
 				show_score();
+				break;
+			case '3':
+				system("cls");
+				last_game();
 				break;
 			}
 

@@ -7,6 +7,9 @@
 #include<fstream>
 #include<vector>
 #include<iostream>
+#include<string>
+#include<cstring>
+using namespace std;
 void gotoxy3(HANDLE hOut2, int x, int y)
 {
 	COORD pos;
@@ -39,9 +42,8 @@ void show_score()
 	inFile.open(filename);
 	int Best;
 	vector<int> score_array;
-	while (inFile.good())
+	while (inFile>>Best)
 	{
-		inFile >> Best;
 		score_array.push_back(Best);
 	}
 	sort(score_array);
@@ -155,6 +157,8 @@ void game()
 	int score = number.get_score();
 	outFile << score << endl;
 	outFile.close();
+	Sleep(1000);
+	system("cls");
 
 }
 
@@ -257,7 +261,8 @@ void last_game()
 	out.close();
 	Outfile.close();
 	infile.close();
-	
+	Sleep(1000);
+	system("cls");
 }
 
 inline bool exist(const std::string& name) 

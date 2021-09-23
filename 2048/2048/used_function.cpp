@@ -144,7 +144,14 @@ void game()
 		game_over = number.game_over();
 	}
 	gotoxy3(hOut, 0, 27);
-	cout << "game over";
+	if (game_over == true)
+	{
+		cout << "game over";
+	}
+	else
+	{
+		cout << "Game saved!!";
+	}
 	int score = number.get_score();
 	outFile << score << endl;
 	outFile.close();
@@ -236,7 +243,14 @@ void last_game()
 		game_over = number.game_over();
 	}
 	gotoxy3(hOut, 0, 27);
-	cout << "game over";
+	if (game_over == true)
+	{
+		cout << "game over";
+	}
+	else
+	{
+		cout << "Game saved!!";
+	}
 	int score = number.get_score();
 	Outfile << score << endl;
 	in.close();
